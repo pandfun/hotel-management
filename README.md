@@ -12,9 +12,9 @@
 
 Make sure you have the following extension installed
 
-|  SL   | Extensions    | Installation Code         |
-| :---: | ------------- | ------------------------- |
-|  1.   | _g++_         | `sudo apt install g++`    |
+| Extensions    | Installation Code         |
+| ------------- | ------------------------- |
+| _g++_         | `sudo apt install g++`    |
 
 > **Note:**
 >
@@ -26,12 +26,6 @@ Make sure you have the following extension installed
  ---
  
 ## Running the files
-
-- ### Windows
-```bash
-make all
-run.exe
-```
 
 - ### Linux
 ```bash
