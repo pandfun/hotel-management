@@ -1,6 +1,10 @@
 # Hotel Management
   
   A menu driven program for hotel management interface!
+  
+  - [Extensions and requirements](#extensions-and-requirements)
+  - [Running the files](#running-the-files)
+  - [Developed by](#developed-by)
 
 ---
 
@@ -21,7 +25,7 @@ Make sure you have the following extension installed
  
  ---
  
-## Running the file
+## Running the files
 
 - ### Windows
 ```bash
