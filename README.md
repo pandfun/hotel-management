@@ -10,11 +10,12 @@
 
 ## Extensions and requirements
 
-Make sure you have the following extension installed
+Make sure you have the following extensions installed
 
-| Extensions    | Installation Code         |
-| ------------- | ------------------------- |
-| _g++_         | `sudo apt install g++`    |
+|SN   | Extensions    | Installation Code         |
+|:---:| ------------- | ------------------------- |
+| 1.  | _g++_         | `sudo apt install g++`    |
+| 2.  | _make_        | `sudo apt install make`   |
 
 > **Note:**
 >

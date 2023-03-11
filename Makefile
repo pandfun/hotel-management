@@ -1,14 +1,14 @@
-main.o : main.cpp
+main.o : src/main.cpp
 	g++ -c main.cpp
 
-room.o : room.cpp
+room.o : src/room.cpp
 	g++ -c room.cpp
 
-all : main.o room.o
-	g++ -o run main.o room.o
+all : src/main.o src/room.o
+	g++ -o run src/main.o src/room.o
 
 clean:
-	rm main.o room.o run
+	rm src/main.o src/room.o run
 
 clr:
 	rm run
