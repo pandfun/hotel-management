@@ -9,6 +9,3 @@ all : src/main.o src/room.o
 
 clean:
 	rm src/main.o src/room.o run
-
-clr:
-	rm run
