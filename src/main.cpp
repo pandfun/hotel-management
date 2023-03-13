@@ -36,26 +36,58 @@ void userInterface(void)
 {
 	int choice, flag = 0;
 
+	cout << "Welcome to the hotel" << endl;
+
 	while (1) {
 MAIN:
-		cout << "\n------ Welcome to the Hotel ------\n" << endl;
+		cout << "\n------------\n" << endl;
 		cout << "1.Check availability\n";
 		cout << "2.Book a room\n";
 		cout << "3.Checkout\n";
 		cout << "4.Exit" << endl;
-		cout << "Enter your choice: ";
+		cout << ">>";
 
 		cin >> choice;
 
 		switch(choice) 
 		{
-			case 1: {
-				/* TODO: write a func to display how many rooms are 
-				vaccant for all 4 types of rooms */
+			case 1: { // Displaying number of rooms available
+				int i = 0;
+				int count = 0;
+				
+				for (i = 0; i < 5; i++)
+					if (rooms[i].vaccancy == true)
+						count++;
+
+				cout << endl;
+				cout << "AC Single Bed = " << count << endl;
+
+				count = 0;
+				for (i = 5; i < 10; ++i)
+					if (rooms[i].vaccancy == true)
+						count++;
+
+				cout << "AC Double Bed = " << count << endl;
+
+				count = 0;
+				for (i = 10; i < 15; ++i)
+					if (rooms[i].vaccancy == true)
+						count++;
+
+				cout << "Non-AC Single Bed = " << count << endl;
+
+				count = 0;
+				for(i = 15; i < 20; ++i)
+					if (rooms[i].vaccancy == true)
+						count++;
+
+				cout << "Non-AC Double Bed = " << count << endl;
+
 				break;
 			}
 
 			case 2: { // Booking a room and taking customer details...
+			/* Not the best method to do this, but works.. */
 
 AC:
 				cout << "\nDo you want AC or Non-AC? (enter 1 or 2): ";
@@ -68,9 +100,9 @@ BED1:
 
 					if (choice == 1) { // AC & single bed
 
-						for(int i = 0; i < 6; ++i) {
+						for(int i = 0; i < 5; ++i) {
 							if (rooms[i].vaccancy == true) {
-CONF:
+CONF1:
 								cout << "\nRoom cost will be Rs." << rooms[i].cost << endl;
 								cout << "Do you want to proceed? (enter 1 for yes or 2 for no): ";
 								cin >> choice;
@@ -80,6 +112,7 @@ CONF:
 									rooms[i].checkIn();
 
 									cout << "Booking completed!\n";
+									cout << "Your room number is " << rooms[i].room_no << endl;
 									cout << "Due Payment: Rs." << rooms[i].cust.due_payment << endl;
 
 									flag = 1;
@@ -87,40 +120,57 @@ CONF:
 									goto AC;
 								} else {
 									cout << "Invalid choice!" << endl;
-									goto CONF;
+									exit(1);
 								}
 
+								flag = 0;
 								goto MAIN;
 							}
 						}
 
 						if (flag == 0) {
-							cout << "Sorry no room found!\n";
+							cout << "\nSorry no vaccancy!\n";
 							goto AC;
 						}
 
-						flag = 0;
-
 					} else if (choice == 2) { // AC & double bed
 
-						for(int i = 6; i < 11; ++i) {
+						for(int i = 5; i < 10; ++i) {
 							if (rooms[i].vaccancy == true) {
-								rooms[i].vaccancy = false;
-								rooms[i].checkIn();
-								flag = 1;
+CONF2:
+								cout << "\nRoom cost will be Rs." << rooms[i].cost << endl;
+								cout << "Do you want to proceed? (enter 1 for yes or 2 for no): ";
+								cin >> choice;
+								
+								if (choice == 1) {
+									rooms[i].vaccancy = false;
+									rooms[i].checkIn();
+
+									cout << "Booking completed!\n";
+									cout << "Your room number is " << rooms[i].room_no << endl;
+									cout << "Due Payment: Rs." << rooms[i].cust.due_payment << endl;
+
+									flag = 1;
+								} else if (choice == 2) {
+									goto AC;
+								} else {
+									cout << "Invalid choice!" << endl;
+									exit(1);
+								}
+
+								flag = 0;
+								goto MAIN;
 							}
 						}
 
 						if (flag == 0) {
-							cout << "Sorry no vaccancy!\n";
+							cout << "\nSorry no vaccancy!\n";
 							goto AC;
 						}
 
-						flag = 0;
-
 					} else {
 						cout << "Invalid choice!\n";
-						goto BED1;
+						exit(1);
 					}
 					
 				} else if (choice == 2) { // user wants Non-AC room
@@ -130,46 +180,82 @@ BED2:
 
 					if (choice == 1) { // Non-AC & single bed
 
-						for(int i = 11; i < 16; ++i) {
+						for(int i = 10; i < 15; ++i) {
 							if (rooms[i].vaccancy == true) {
-								rooms[i].vaccancy = false;
-								rooms[i].checkIn();
-								flag = 1;
+CONF3:
+								cout << "\nRoom cost will be Rs." << rooms[i].cost << endl;
+								cout << "Do you want to proceed? (enter 1 for yes or 2 for no): ";
+								cin >> choice;
+								
+								if (choice == 1) {
+									rooms[i].vaccancy = false;
+									rooms[i].checkIn();
+
+									cout << "Booking completed!\n";
+									cout << "Your room number is " << rooms[i].room_no << endl;
+									cout << "Due Payment: Rs." << rooms[i].cust.due_payment << endl;
+
+									flag = 1;
+								} else if (choice == 2) {
+									goto AC;
+								} else {
+									cout << "Invalid choice!" << endl;
+									exit(1);
+								}
+
+								flag = 0;
+								goto MAIN;
 							}
 						}
 
 						if (flag == 0) {
-							cout << "Sorry no room found!\n";
+							cout << "\nSorry no vaccancy!\n";
 							goto AC;
 						}
-
-						flag = 0;
 
 					} else if (choice == 2) { // Non-AC & double bed
 
-						for(int i = 15; i < 21; ++i) {
+						for(int i = 15; i < 20; ++i) {
 							if (rooms[i].vaccancy == true) {
-								rooms[i].vaccancy = false;
-								rooms[i].checkIn();
-								flag = 1;
+CONF4:
+								cout << "\nRoom cost will be Rs." << rooms[i].cost << endl;
+								cout << "Do you want to proceed? (enter 1 for yes or 2 for no): ";
+								cin >> choice;
+								
+								if (choice == 1) {
+									rooms[i].vaccancy = false;
+									rooms[i].checkIn();
+
+									cout << "Booking completed!\n";
+									cout << "Your room number is " << rooms[i].room_no << endl;
+									cout << "Due Payment: Rs." << rooms[i].cust.due_payment << endl;
+
+									flag = 1;
+								} else if (choice == 2) {
+									goto AC;
+								} else {
+									cout << "Invalid choice!" << endl;
+									exit(1);
+								}
+
+								flag = 0;
+								goto MAIN;
 							}
 						}
 
 						if (flag == 0) {
-							cout << "Sorry no vaccancy!\n";
+							cout << "\nSorry no vaccancy!\n";
 							goto AC;
 						}
 
-						flag = 0;
-
 					} else {
 						cout << "Invalid choice!\n";
-						goto BED2;
+						exit(1);
 					}
 
 				} else {
 					cout << "Invalid choice!\n";
-					goto AC;
+					exit(1);
 				}
 
 
@@ -186,7 +272,7 @@ BED2:
 			}
 
 			default: {
-				cout << "\nerr: Do not use alphabets!" << endl;
+				cout << "\nInvalid choice!" << endl;
 				exit(1);
 			}
 		}
@@ -205,13 +291,13 @@ void createRooms(void)
 	for (int i = 0; i < 20; ++i) {
 		
 		// setting flags
-		if (i < 6)
+		if (i >= 0 && i <= 4)
 			flag = 1;
-		else if (i < 11)
+		else if (i >= 5 && i <= 9)
 			flag = 2;
-		else if (i < 16)
+		else if (i >= 10 && i <= 14)
 			flag = 3;
-		else if (i < 21)
+		else if (i >= 15 && i <= 19)
 			flag = 4;
 		
 		rooms[i].room_no = i+1;
