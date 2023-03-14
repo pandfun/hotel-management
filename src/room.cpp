@@ -54,8 +54,14 @@ void Room::checkIn(void)
 	return;
 }
 
-/* TODO: finish this program */
+
 void Room::checkOut(void) 
 {
-	// code here...
+	this->vaccancy = true;
+	
+	memset(this->cust.name, 0, strlen(this->cust.name) * sizeof(char));
+	this->cust.adv_payment = 0;
+	this->cust.due_payment = 0;
+
+	return;
 }

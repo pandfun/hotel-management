@@ -45,7 +45,7 @@ MAIN:
 		cout << "2.Book a room\n";
 		cout << "3.Checkout\n";
 		cout << "4.Exit" << endl;
-		cout << ">>";
+		cout << ">> ";
 
 		cin >> choice;
 
@@ -111,7 +111,7 @@ CONF1:
 									rooms[i].vaccancy = false;
 									rooms[i].checkIn();
 
-									cout << "Booking completed!\n";
+									cout << "\nBooking completed!\n";
 									cout << "Your room number is " << rooms[i].room_no << endl;
 									cout << "Due Payment: Rs." << rooms[i].cust.due_payment << endl;
 
@@ -146,7 +146,7 @@ CONF2:
 									rooms[i].vaccancy = false;
 									rooms[i].checkIn();
 
-									cout << "Booking completed!\n";
+									cout << "\nBooking completed!\n";
 									cout << "Your room number is " << rooms[i].room_no << endl;
 									cout << "Due Payment: Rs." << rooms[i].cust.due_payment << endl;
 
@@ -191,7 +191,7 @@ CONF3:
 									rooms[i].vaccancy = false;
 									rooms[i].checkIn();
 
-									cout << "Booking completed!\n";
+									cout << "\nBooking completed!\n";
 									cout << "Your room number is " << rooms[i].room_no << endl;
 									cout << "Due Payment: Rs." << rooms[i].cust.due_payment << endl;
 
@@ -226,7 +226,7 @@ CONF4:
 									rooms[i].vaccancy = false;
 									rooms[i].checkIn();
 
-									cout << "Booking completed!\n";
+									cout << "\nBooking completed!\n";
 									cout << "Your room number is " << rooms[i].room_no << endl;
 									cout << "Due Payment: Rs." << rooms[i].cust.due_payment << endl;
 
@@ -262,8 +262,43 @@ CONF4:
 				break;
 			}
 			case 3: { // user wants to checkout!
-				/* TODO : write function for this,
-				 clear all details in room obj*/
+
+				int room_check;
+				char name_confirm[30] = {0};
+
+				cout << "Enter what room you are staying in: ";
+				cin >> room_check;
+				
+				--room_check; // to use this as the index for rooms obj arr
+
+				cout << "To confirms it's you, enter the name you used to bookin: ";
+				cin >> name_confirm;
+
+				if (strcmp(name_confirm, rooms[room_check].cust.name) == 0) {
+
+					if (rooms[room_check].cust.due_payment > 0) {
+						cout << "\nPls finish due payment before checking out!" << endl;
+						cout << "Would you like to pay now? (enter 1 for yes, 2 for no): ";
+						cin >> choice;
+
+						if (choice == 1) {
+							rooms[room_check].cust.due_payment = 0;
+
+						} else {
+							cout << "\nSorry cannot checkout with pending payment!\n";
+							break;
+						}
+					}
+					
+					rooms[room_check].checkOut();
+
+				} else {
+					cout << "\nFailed to checkout!! ";
+					cout << "Invalid name entry!" << endl;
+					break;
+				}
+
+				cout << "\nYou have been checked out succesfully!\nThank you for staying with us!!\n"; 
 				break;
 			}
 
